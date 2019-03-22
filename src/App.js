@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 // ** https://github.com/skratchdot/react-bootstrap-daterangepicker
-import DateRangePicker from 'react-bootstrap-daterangepicker';
+import DateRangePicker from "react-bootstrap-daterangepicker";
 // you will need the css that comes with bootstrap@3. if you are using
 // a tool like webpack, you can do the following:
-import './assets/bootstrap.css';
+import "./assets/bootstrap.css";
 // you will also need the css that comes with bootstrap-daterangepicker
-import './assets/daterangepicker.css';
-import './assets/_datepicker.css';
-import moment from 'moment';
+import "./assets/daterangepicker.css";
+import "./assets/_datepicker.css";
+import moment from "moment";
 
 // ** https://github.com/airbnb/react-dates
-import 'react-dates/initialize';
-import { DayPickerRangeController as AirBnbDR, SingleDatePicker } from 'react-dates';
+import "react-dates/initialize";
+import {
+  DayPickerRangeController as AirBnbDR
+} from "react-dates";
 
-
-export const START_DATE = 'startDate';
-export const END_DATE = 'endDate';
+export const START_DATE = "startDate";
+export const END_DATE = "endDate";
 
 class App extends Component {
   constructor(props) {
@@ -33,42 +34,39 @@ class App extends Component {
 
     this.state = {
       focusedInput,
-      startDate:  moment().subtract(30, 'days'),
+      startDate: moment().subtract(30, "days"),
       endDate: moment()
-    }
+    };
   }
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <h3>
             React DateTime Picker Tests
-          </a>
-          <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
-            <button>ReactBootstrap</button>
-          </DateRangePicker>
-
+          </h3>
+        </header>
+        <div className="container">
+          <div className="item-a">
+            <DateRangePicker startDate="1/1/2014" endDate="3/1/2014">
+              <button>ReactBootstrap</button>
+            </DateRangePicker>
+          </div>
+          <div className="item-b">
           <AirBnbDR
             startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-            startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
             endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-            endDateId='airbnb-drp1' // PropTypes.string.isRequired,
-            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+            onDatesChange={({ startDate, endDate }) =>
+              this.setState({ startDate, endDate })
+            } // PropTypes.func.isRequired,
             focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
             onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-            numberOfMonths={ 2 }
-            daySize= { 32 }
+            numberOfMonths={2}
+            daySize={32}
           />
-        </header>
+          </div>
+        </div>
       </div>
     );
   }
